@@ -24,7 +24,7 @@ abstract class ActiveRecordAbstract extends ActiveRecord
     public function init()
     {
         $this->loadDefaultValues();
-        return parent::init();
+        parent::init();
     }
 
     public static function find()

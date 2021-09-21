@@ -4,6 +4,7 @@
 /* @var $form yii\widgets\ActiveForm */
 /* @var $dataProvider \yii\data\ArrayDataProvider */
 use App\Domains\Client\ClientActions;
+use App\Domains\Company;
 use App\Infra\Widgets\ButtonCreator\ButtonCreator;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -18,6 +19,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php $form = ActiveForm::begin() ?>
         <div class="row">
+            <div class="col-md-3">
+                <?= $form->field($importForm, 'company')->dropDownList(Company::labels(), [
+                    'prompt' => ':: SELECIONE ::'
+                ]) ?>
+            </div>
             <div class="col-md-6">
                 <?= $form->field($importForm, 'file')->fileInput([
                     'class' => 'form-control'

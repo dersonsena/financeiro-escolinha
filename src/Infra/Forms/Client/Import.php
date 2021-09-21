@@ -2,12 +2,18 @@
 
 namespace App\Infra\Forms\Client;
 
+use App\Domains\Company;
 use Yii;
 use yii\base\Model;
 use yii\web\UploadedFile;
 
 class Import extends Model
 {
+    /**
+     * @var string
+     */
+    public $company;
+
     /**
      * @var UploadedFile
      */
@@ -31,8 +37,9 @@ class Import extends Model
     public function rules()
     {
         return [
-            ['file', 'required'],
-            ['file', 'file', 'skipOnEmpty' => false]
+            [['file', 'company'], 'required'],
+            ['file', 'file', 'skipOnEmpty' => false],
+            ['company', 'in', 'range' => Company::values()],
             //['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'csv']
         ];
     }
@@ -40,7 +47,8 @@ class Import extends Model
     public function attributeLabels()
     {
         return [
-            'file' => 'Selecione um arquivo'
+            'file' => 'Selecione um arquivo',
+            'company' => 'Empresa',
         ];
     }
 
@@ -71,6 +79,12 @@ class Import extends Model
     public function upload()
     {
         $tmpPath = Yii::getAlias('@runtime/tmp');
+
+        if (!is_dir($tmpPath)) {
+            mkdir($tmpPath);
+            chmod($tmpPath, 0777);
+        }
+
         $this->fileName = Yii::$app->getSecurity()->generateRandomString(15) . '.' . $this->file->extension;
         $this->fullPathName = $tmpPath . DS . $this->fileName;
 
@@ -107,7 +121,8 @@ class Import extends Model
                 'address_number' => trim($rows[$i][6]),
                 'address_neighborhood' => trim($rows[$i][7]),
                 'address_zipcode' => trim($rows[$i][8]),
-                'address_complement' => trim($rows[$i][9])
+                'address_complement' => trim($rows[$i][9]),
+                'company' => $this->company
             ];
 
             $lineNumber++;

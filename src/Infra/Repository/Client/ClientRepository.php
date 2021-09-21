@@ -42,6 +42,7 @@ class ClientRepository extends RepositoryAbstract
         $query->andFilterWhere(['like', 'name', $model->name]);
         $query->andFilterWhere(['like', 'email', $model->email]);
         $query->andFilterWhere(['like', 'cpf', $model->cpf]);
+        $query->andFilterWhere(['like', 'company', $model->company]);
 
         return $dataProvider;
     }

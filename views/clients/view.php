@@ -2,6 +2,7 @@
 /* @var yii\web\View $this  */
 /* @var App\Domains\Client\Client $model */
 use App\Domains\Client\ClientActions;
+use App\Domains\Company;
 use App\Infra\Widgets\ButtonCreator\ButtonCreator;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -27,6 +28,10 @@ YiiAsset::register($this);
             'id',
             'name',
             'email',
+            [
+                'attribute' => 'company',
+                'value' => Company::getLabel($model->company)
+            ],
             'cpf:cpf',
             'phone_home:phoneDDD',
             'phone_cell:phoneDDD',

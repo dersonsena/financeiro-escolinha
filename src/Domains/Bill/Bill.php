@@ -3,6 +3,7 @@
 namespace App\Domains\Bill;
 
 use App\Domains\Client\Client;
+use App\Domains\Company;
 use App\Infra\ActiveRecord\ActiveRecordAbstract;
 use Yii;
 
@@ -73,7 +74,7 @@ class Bill extends ActiveRecordAbstract
             ],
             ['amount', 'number'],
             ['description', 'string', 'max' => 60],
-            ['company', 'in', 'range' => ['ESCOLINHA', 'STUDIOSTILO']],
+            ['company', 'in', 'range' => Company::values()],
             [['payment_user', 'cancellation_user', 'created_by', 'updated_by', 'deleted_by'], 'string', 'max' => 100],
             [
                 'client_id',

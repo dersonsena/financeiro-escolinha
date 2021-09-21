@@ -3,6 +3,7 @@
 namespace App\Domains\Client;
 
 use App\Domains\Bill\Bill;
+use App\Domains\Company;
 use App\Infra\ActiveRecord\ActiveRecordAbstract;
 use App\Infra\ActiveRecord\Validators\CpfCnpjValidator;
 use App\Infra\ActiveRecord\Validators\RemoveSymbolsFilter;
@@ -67,7 +68,7 @@ class Client extends ActiveRecordAbstract
         return [
             [['name', 'type', 'company'], 'required'],
             ['email', 'email'],
-            ['company', 'in', 'range' => ['ESCOLINHA', 'STUDIOSTILO']],
+            ['company', 'in', 'range' => Company::values()],
             [['status', 'deleted'], 'integer'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['name', 'email', 'address_street', 'address_neighborhood', 'address_complement'], 'string', 'max' => 60],
@@ -109,6 +110,7 @@ class Client extends ActiveRecordAbstract
             'address_neighborhood' => 'Bairro',
             'address_zipcode' => 'CEP',
             'address_complement' => 'Complemento',
+            'company' => 'Empresa'
         ]);
     }
 

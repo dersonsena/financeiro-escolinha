@@ -18,6 +18,7 @@ class ImportAction extends Action
         $importForm = Yii::$container->get(Import::class);
 
         if (Yii::$app->getRequest()->getIsPost()) {
+            $importForm->load(Yii::$app->request->post());
             $importForm->file = UploadedFile::getInstance($importForm, 'file');
 
             if (!$importForm->upload()) {
@@ -26,7 +27,7 @@ class ImportAction extends Action
             }
 
             if (!$importForm->parseFile()) {
-                Yii::$app->getSession()->addFlash('error', 'Houve um erro ao ler arquivo de importação.');
+                Yii::$app->getSession()->addFlash('error', 'Houve um erro na leitura arquivo de importação.');
                 return $this->controller->refresh();
             }
 
