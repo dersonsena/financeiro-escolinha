@@ -6,8 +6,10 @@
 use App\Domains\Bill\ActionGridColumn;
 use App\Domains\Bill\Bill;
 use App\Domains\Bill\BillActions;
+use App\Domains\Company;
 use App\Infra\GridView\LinkDataColumn;
 use App\Infra\Widgets\ButtonCreator\ButtonCreator;
+use yii\grid\DataColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -47,7 +49,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'description',
-                'class' => LinkDataColumn::class
+                'content' => function (Bill $bill) {
+                    return Html::a($bill->description, ['view', 'id' => $bill->id], [
+                        'title' => 'Visualizar este registro',
+                        'style' => 'display: block'
+                    ]) . "<small>Empresa: ". Company::getLabel($bill->company) ."</small>";
+                }
             ],
             [
                 'attribute' => 'client_id',
@@ -69,6 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => ActionGridColumn::class,
+                'headerOptions' => ['style' => 'width: 265px', 'class'=>'text-center'],
                 'domainActions' => BillActions::class
             ]
         ],

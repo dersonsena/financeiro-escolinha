@@ -2,12 +2,10 @@
 
 namespace App\Infra\GridView;
 
-use App\Domains\Client\ClientActions;
 use App\Infra\DomainActions\ActionsAbstract;
 use App\Infra\Widgets\ButtonCreator\ButtonCreator;
 use Yii;
 use yii\grid\ActionColumn;
-use yii\helpers\Html;
 use yii\web\User;
 
 class ActionGridColumn extends ActionColumn

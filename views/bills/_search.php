@@ -3,6 +3,7 @@
 
 use App\Domains\Bill\Bill;
 use App\Domains\Client\Client;
+use App\Domains\Company;
 use dosamigos\datepicker\DatePicker;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -38,8 +39,13 @@ use yii\widgets\ActiveForm;
                         ]
                     ]) ?>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <?= $form->field($searchModel, 'client_id')->dropDownList(Client::dropdownOptions('name'), [
+                        'prompt' => ':: TODOS ::'
+                    ]) ?>
+                </div>
+                <div class="col-md-2">
+                    <?= $form->field($searchModel, 'company')->dropDownList(Company::labels(), [
                         'prompt' => ':: TODOS ::'
                     ]) ?>
                 </div>
@@ -48,9 +54,9 @@ use yii\widgets\ActiveForm;
                         'prompt' => ':: TODOS ::'
                     ]) ?>
                 </div>
-                <div class="col-md-2" style="margin-top: 24px">
-                    <?= Html::submitButton('<i class="glyphicon glyphicon-search"></i> Pesquisar', [
-                        'class' => 'btn btn-primary btn-block'
+                <div class="col-md-1" style="margin-top: 24px">
+                    <?= Html::submitButton('<i class="glyphicon glyphicon-search"></i>', [
+                        'class' => 'btn btn-primary'
                     ]) ?>
                 </div>
             </div>

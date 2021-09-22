@@ -2,6 +2,7 @@
 /* @var yii\web\View $this  */
 /* @var App\Domains\Bill\Bill $model */
 use App\Domains\Bill\BillActions;
+use App\Domains\Company;
 use App\Infra\Widgets\ButtonCreator\ButtonCreator;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -36,6 +37,10 @@ YiiAsset::register($this);
             ],
             'id',
             'description',
+            [
+                'attribute' => 'company',
+                'value' => Company::getLabel($model->company)
+            ],
             'due_date',
             'amount:currency',
             [

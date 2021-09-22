@@ -58,6 +58,7 @@ class BillRepository extends RepositoryAbstract
 
         $query->andFilterWhere(['between', 'due_date', $dueDateStart, $dueDateEnd]);
         $query->andFilterWhere(['like', 'description', $model->description]);
+        $query->andFilterWhere(['like', 'company', $model->company]);
 
         return $dataProvider;
     }

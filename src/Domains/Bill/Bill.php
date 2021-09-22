@@ -120,6 +120,7 @@ class Bill extends ActiveRecordAbstract
             'cancellation_date' => 'Data Cancelamento',
             'cancellation_reason' => 'Motivo Cancelamento',
             'cancellation_user' => 'Usuário que Cancelou',
+            'company' => 'Empresa'
         ]);
     }
 

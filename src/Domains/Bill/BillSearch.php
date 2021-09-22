@@ -2,6 +2,7 @@
 
 namespace App\Domains\Bill;
 
+use App\Domains\Company;
 use yii\helpers\ArrayHelper;
 
 class BillSearch extends Bill
@@ -18,8 +19,6 @@ class BillSearch extends Bill
 
     public function init()
     {
-        parent::init();
-
         $monthYear = date('m') . '/' . date('Y');
         $this->dueDateStart = "01/{$monthYear}";
         $this->dueDateEnd = date('t') . '/' . $monthYear;
@@ -32,6 +31,7 @@ class BillSearch extends Bill
     {
         return [
             ['id', 'integer'],
+            ['company', 'in', 'range' => Company::values()],
             [['dueDateStart', 'dueDateEnd'], 'required'],
             ['description', 'string', 'max' => 60],
             [['client_id', 'status'], 'integer'],

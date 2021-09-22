@@ -6,6 +6,7 @@
 use App\Domains\Bill\Bill;
 use App\Domains\Bill\BillActions;
 use App\Domains\Client\Client;
+use App\Domains\Company;
 use App\Infra\Widgets\ButtonCreator\ButtonCreator;
 use dosamigos\datepicker\DatePicker;
 use kartik\money\MaskMoney;
@@ -27,6 +28,11 @@ use yii\widgets\ActiveForm;
                 </div>
                 <div class="col-md-3">
                     <?= $form->field($model, 'client_id')->dropDownList(Client::dropdownOptions('name'), [
+                        'prompt' => ':: SELECIONE ::'
+                    ]) ?>
+                </div>
+                <div class="col-md-3">
+                    <?= $form->field($model, 'company')->dropDownList(Company::labels(), [
                         'prompt' => ':: SELECIONE ::'
                     ]) ?>
                 </div>
