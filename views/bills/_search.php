@@ -5,6 +5,7 @@ use App\Domains\Bill\Bill;
 use App\Domains\Client\Client;
 use App\Domains\Company;
 use dosamigos\datepicker\DatePicker;
+use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 ?>
@@ -40,8 +41,13 @@ use yii\widgets\ActiveForm;
                     ]) ?>
                 </div>
                 <div class="col-md-2">
-                    <?= $form->field($searchModel, 'client_id')->dropDownList(Client::dropdownOptions('name'), [
-                        'prompt' => ':: TODOS ::'
+                    <?= $form->field($searchModel, 'client_id')->widget(Select2::class, [
+                        'data' => Client::dropdownOptions('name'),
+                        'language' => 'pt-BR',
+                        'options' => ['placeholder' => ':: Selecione um Cliente ::'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
                     ]) ?>
                 </div>
                 <div class="col-md-2">

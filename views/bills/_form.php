@@ -10,6 +10,7 @@ use App\Domains\Company;
 use App\Infra\Widgets\ButtonCreator\ButtonCreator;
 use dosamigos\datepicker\DatePicker;
 use kartik\money\MaskMoney;
+use kartik\select2\Select2;
 use yii\widgets\ActiveForm;
 ?>
 
@@ -27,8 +28,13 @@ use yii\widgets\ActiveForm;
                     ]) ?>
                 </div>
                 <div class="col-md-3">
-                    <?= $form->field($model, 'client_id')->dropDownList(Client::dropdownOptions('name'), [
-                        'prompt' => ':: SELECIONE ::'
+                    <?= $form->field($model, 'client_id')->widget(Select2::class, [
+                        'data' => Client::dropdownOptions('name'),
+                        'language' => 'pt-BR',
+                        'options' => ['placeholder' => ':: Selecione um Cliente ::'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
                     ]) ?>
                 </div>
                 <div class="col-md-3">

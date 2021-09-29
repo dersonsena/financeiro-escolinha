@@ -16,7 +16,12 @@ defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
 
 ini_set('display_errors', (YII_ENV_PROD ? 0 : 1));
+ini_set('log_errors', (YII_ENV_PROD ? 1 : 0));
 ini_set('error_reporting', E_ALL | E_STRICT);
+
+if (YII_ENV_PROD) {
+    error_reporting(E_ERROR | E_WARNING | E_PARSE);
+}
 
 $config = require __DIR__ . '/../config/web.php';
 

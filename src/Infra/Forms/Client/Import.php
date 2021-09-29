@@ -96,7 +96,7 @@ class Import extends Model
         $rows = [];
         $fileHandler = fopen($this->fullPathName, 'r');
 
-        while ($data = fgetcsv($fileHandler, 1000, ',')) {
+        while (($data = fgetcsv($fileHandler, 1000, ";")) !== FALSE) {
             $rows[] = $data;
         }
 

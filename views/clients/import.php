@@ -17,6 +17,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="client-form">
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <div class='alert alert-info'>
+        Se você estiver exportando pelo <strong>Microsoft Office</strong> exporte o arquivo CSV com tipo: <strong>CSV UTF-8 (Delimitado por vírgulas) (*.csv)</strong>
+    </div>
+
     <?php $form = ActiveForm::begin() ?>
         <div class="row">
             <div class="col-md-3">
